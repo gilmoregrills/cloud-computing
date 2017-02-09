@@ -1,0 +1,3 @@
+vminstance script located in usr/local/bin/vminstance
+
+
