@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/gilmoregrills/cloudcomputing/issues"
   },
-  "homepage": "https://github.com/gilmoregrills/cloudcomputing#readme"
+  "homepage": "https://github.com/gilmoregrills/cloudcomputing#readme",
+  "dependencies": {
+    "promise": "^7.1.1",
+    "sync-request": "^4.0.1",
+    "synchronize": "^2.0.0"
+  }
 }
