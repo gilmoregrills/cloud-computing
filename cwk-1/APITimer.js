@@ -1,16 +1,29 @@
-const request = require('sync-request');
+const request = require('syncrequest');
 
-var url = 'http://pokeapi.co/api/v2/pokemon/145/'; //the API to GET from
+var url = 'http://www.pokeapi.co/api/v2/pokemon/zapdos/'; //the API to GET from
 var calls = 10; //the number of times you want to GET
 var count = new Array(calls).fill(0);
-	
-//creates array named results containing the response time of each request
+
+//returns array named results containing the response time of each request
 var results = count.map(function() {
 		var startTime = Date.now();
-		var result = request('GET', url);//function may change if uni machines lack node or if it proves too slow
+		var result = request.sync(url);
 		var responsetime = Date.now() - startTime;
+		//for debugging: console.log(JSON.parse(result.body).forms[0]);
 		return responsetime;
 });
+
+/*
+asynchronous (broken) alternative
+var results = count.map(function (url) {
+		var startTime = Date.now();
+		request(url, function (error, response, data) {
+			var responsetime = Date.now() - startTime;
+			if (error) throw (error);
+			console.log('responsetime: ', responsetime);
+		});
+});
+*/
 
 //for debugging, prints response times array/averages etc
 //it's only an IIFE because it used to have other statements in
