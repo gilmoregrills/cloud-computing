@@ -1,9 +1,13 @@
 #Cloud Computing - Coursework 1
 
+#apiTimer
+
 First, enter the "npm install" command to install any dependencies. 
 
 Then just enter "node apiTimer.js" to execute. 
 
-To change the API url, rate limit, or number of requests, just modify the variables at the top of the file. 
+To change the API url, rate limit, or number of requests to make, just modify the variables at the top of the file. 
 
-Anything else should be explained by comments/in the report. 
+#instTimer
+
+As usual, chmod to make it runnable, execute with ./instTimer.sh

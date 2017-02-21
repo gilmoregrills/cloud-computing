@@ -1,23 +1,37 @@
-const request = require('syncrequest');
+const syncRequest = require('syncrequest');
 
 var url = 'http://www.pokeapi.co/api/v2/pokemon/zapdos/'; //the API to GET from
-var rateLimit = 300;
-var requests = 7; //the number of times you want to GET
+var rateLimit = 3; //should be per 15 minutes, math possibly needed 
+var requests = 5; //the number of times you want to GET
 
+//handles which functions get called/what the final print looks like
+(function() {
+	if (requests == 1) {
+		console.log(testAPI(url, requests, rateLimit));
+	} else {
+		var results = testAPI(url, requests, rateLimit);
+		console.log('Response Times: '+results.toString());
+		console.log('Calculations Complete!\nThe average response time was: '+calcAverage(results)+'\nThe median response time was: '+calcMedian(results)+'\nThe max response times was: '+calcMax(results)+'\nThe standard deviation was: '+calcSD(results));
+	}
+}());
 
-//takes as input the specified url, number of requests you want made, plus limit
-//main conditional checks whether you want to test 1 response or >1
-//if many, checks if requests > limit, if yes sets requests to limit-1
-//returns array of results if many, single int if not
-function testAPI (url, requests, limit) {
+//the actual API testing function
+function testAPI (url, requests, rateLimit) {
 	if (requests > 1) {
-		requests = requests>limit ? limit-1 : requests;
 		var count = new Array(requests).fill(0);
 		var results = count.map(function() {
 			var startTime = Date.now();
 			var result = request.sync(url);
 			var responsetime = Date.now() - startTime;
-			//for debugging: console.log(JSON.parse(result.body).forms[0]);
+			//the below if statement checks if the responsetime is less
+			//than 15 minutes/rateLimit, if it is, we wait 
+			if (responsetime < 900000/rateLimit) {
+				var waitTime = (900000/rateLimit)-responsetime;
+				var start = Date.now();
+				while (Date.now() != start+waitTime) {
+				}//pretty hacky, but there isn't a nice wait() function
+			}
+			//for debugging console.log(JSON.parse(result.body).forms[0]);
 			return responsetime;
 		});
 		return results;
@@ -29,30 +43,8 @@ function testAPI (url, requests, limit) {
 	}
 };
 
-/*
-asynchronous (broken) alternative
-var results = count.map(function (url) {
-		var startTime = Date.now();
-		request(url, function (error, response, data) {
-			var responsetime = Date.now() - startTime;
-			if (error) throw (error);
-			console.log('responsetime: ', responsetime);
-		});
-});
-*/
-
-//IIFE saves one line of function call!
-//potentially redundant conditional, if 1 just prints the response time
-//if calls >1 gets array of response times and prints averages etc
-(function() {
-	if (requests == 1) {
-		console.log(testAPI(url, requests, rateLimit));
-	} else {
-		var results = testAPI(url, requests, rateLimit);
-		console.log('Response Times: '+results.toString());
-		console.log('Calculations Complete!\nThe average response time was: '+calcAverage(results)+'\nThe median response time was: '+calcMedian(results)+'\nThe max response times was: '+calcMax(results)+'\nThe standard deviation was: '+calcSD(results));
-	}
-}());
+//these are only called if requests >1, to calculate and return 
+//averages and so on
 
 function calcAverage(arr) {
 	var total = arr.reduce(function(total, value) {
