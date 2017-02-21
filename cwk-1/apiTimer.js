@@ -1,4 +1,4 @@
-const syncRequest = require('syncrequest');
+const request = require('syncrequest');
 
 var url = 'http://www.pokeapi.co/api/v2/pokemon/zapdos/'; //the API to GET from
 var rateLimit = 3; //should be per 15 minutes, math possibly needed 
@@ -31,7 +31,7 @@ function testAPI (url, requests, rateLimit) {
 				while (Date.now() != start+waitTime) {
 				}//pretty hacky, but there isn't a nice wait() function
 			}
-			//for debugging console.log(JSON.parse(result.body).forms[0]);
+			console.log(JSON.parse(result.body).forms[0]);
 			return responsetime;
 		});
 		return results;
@@ -75,8 +75,8 @@ function calcMax(arr) {
 function calcSD(arr) {
 	var mean = calcAverage(arr);
 	var squareVariance = arr.map(function(time){
-		var index = arr - mean;
-		var squareIndex = time * time;
+		var index = time - mean;
+		var squareIndex = index * index;;
 		return squareIndex;
 	});
 	var total = squareVariance.reduce(function(total, value) {
