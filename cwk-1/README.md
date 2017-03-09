@@ -1,8 +1,11 @@
 #Cloud Computing - Coursework 1
 
+Student Name: Robin Farrow-Yonge
+Student Number: 160719011
+
 #apiTimer
 
-First, enter the "npm install" command to install any dependencies. 
+First, enter the "npm install" command to install the one dependency.
 
 Then just enter "node apiTimer.js" to execute. 
 
