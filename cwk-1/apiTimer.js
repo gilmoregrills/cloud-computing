@@ -1,10 +1,18 @@
+/*
+ *Student Name: Robin Farrow-Yonge
+ *Student Number: 160719011 
+ *Sorry it's so verbose! I had too much fun playing with JS.
+ *You can safely ignore all but the testAPI function, and I've
+ *broken it down in the report anyway. 
+*/
+
 const request = require('syncrequest');
 
 var url = 'http://www.pokeapi.co/api/v2/pokemon/zapdos/'; //the API to GET from
 var rateLimit = 300; //should be per 15 minutes, math possibly needed 
 var requests = 5; //the number of times you want to GET
 
-//handles which functions get called/what the final print looks like
+//just calls the function, safe to ignore pretty much
 (function() {
 	if (requests == 1) {
 		console.log(testAPI(url, requests, rateLimit));
@@ -43,8 +51,8 @@ function testAPI (url, requests, rateLimit) {
 	}
 };
 
-//these are only called if requests >1, to calculate and return 
-//averages and so on
+//functions to analyse results 
+//again, just got carried away with JS
 
 function calcAverage(arr) {
 	var total = arr.reduce(function(total, value) {
@@ -61,7 +69,7 @@ function calcMedian(arr) {
 	}
 };
 
-//replace loop w/ filter potentially
+//replace loop w/ filter
 function calcMax(arr) {
 	var tmp = 0;
 	for (var i = 0; i < arr.length; i++) {
