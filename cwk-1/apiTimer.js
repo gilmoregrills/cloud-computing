@@ -1,7 +1,7 @@
 const request = require('syncrequest');
 
 var url = 'http://www.pokeapi.co/api/v2/pokemon/zapdos/'; //the API to GET from
-var rateLimit = 3; //should be per 15 minutes, math possibly needed 
+var rateLimit = 300; //should be per 15 minutes, math possibly needed 
 var requests = 5; //the number of times you want to GET
 
 //handles which functions get called/what the final print looks like
