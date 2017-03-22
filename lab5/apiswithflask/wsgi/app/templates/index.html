@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %} Damn! {% endblock %}
+{% block content %}
+      <h5 class="header col s12 light">Check out this phresh app written with Flask</h5>
+      <h5 class="header col s12 light">Click below to have this thing analyse the sentiment in some text</h5>
+      </div>
+      <div class="row center">
+	      <a href="{{ url_for('emotion') }}" id="download-button" class="btn-large waves-effect waves-light lilac">type ur feels<i class="material-icons right">input</i></a>
+      </div>
+{% endblock %}

@@ -1,0 +1,6 @@
+venv/
+*.swp
+.project
+*.pyc
+*.pyo
+*~
