@@ -6,5 +6,5 @@ setup(name='rwfy3apitest1',
       author='Robin Yonge',
       author_email='lol',
       url='https://www.python.org/community/sigs/current/distutils-sig',
-      install_requires=['’Flask’,’flask-wtf’,’flask-babel’,’markdown’,’flup’'],
+      install_requires=['’Flask’,’flask-wtf’,’flask-babel’,’markdown’,’flup’,’bokeh’'],
       )
